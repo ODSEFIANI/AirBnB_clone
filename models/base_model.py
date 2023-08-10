@@ -2,7 +2,7 @@
 base_model class
 """
 
-
+import models
 from datetime import datetime
 import uuid
 
@@ -52,6 +52,7 @@ class BaseModel():
         with the current datetime
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """
