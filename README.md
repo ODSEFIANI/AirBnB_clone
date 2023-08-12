@@ -1,6 +1,10 @@
 ## __Welcome to the AirBnB clone project!__
 Before starting, please read the __AirBnB__ concept page.
 
+##Project Description:
+
+Welcome to the AirBnB clone project! This project is the first step towards building a full web application: the AirBnB clone. The goal of this step is to create a command interpreter to manage AirBnB objects and lay the foundation for future development. By completing this step, you will be able to put in place a parent class (BaseModel) for initializing, serializing, and deserializing instances. You'll also create various classes such as User, State, City, and Place, which will inherit from BaseModel. Additionally, you'll implement a simple flow of serialization/deserialization for instances, dictionaries, JSON strings, and files. Finally, you'll develop the first abstracted storage engine of the project, the File storage, and create unit tests to validate all classes and the storage engine.
+
 #### __First step: Write a command interpreter to manage your AirBnB objects.__
 This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 
