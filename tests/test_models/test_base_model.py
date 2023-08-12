@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 Unittest for BaseModel Class
 # run with python3 -m unittest discover tests
