@@ -8,6 +8,7 @@ import unittest
 from models import base_model
 BaseModel = base_model.BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
     """
     tests for models/base_model.py
@@ -18,7 +19,8 @@ class TestBaseModel(unittest.TestCase):
         tests if an instance is created
         """
         obj = BaseModel()
-        self.assertTrue(isinstance(obj, BaseModel))  # Corrected line - added closing parenthesis
+        self.assertTrue(isinstance(obj, BaseModel))
+
 
 if __name__ == '__main__':
     unittest.main()
