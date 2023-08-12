@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 base_model class
 """
@@ -22,16 +23,17 @@ class BaseModel():
         """
         initializes an instance
         """
-        if len(kwargs)!=0:
-            for key,value in kwargs.items():
-                if key=="__class__":
+        if len(kwargs) != 0:
+            t = "%Y-%m-%dT%H:%M:%S.%f"
+            for key, value in kwargs.items():
+                if key == "__class__":
                     pass
                 elif key == "created_at":
-                    self.created_at = datetime.strptime(value,"%Y-%m-%dT%H:%M:%S.%f")
+                    self.created_at = datetime.strptime(value, t)
                 elif key == "updated_at":
-                      self.updated_at = datetime.strptime(value,"%Y-%m-%dT%H:%M:%S.%f")
+                    self.updated_at = datetime.strptime(value, t)
                 else:
-                    setattr(self, key, value) 
+                    setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
