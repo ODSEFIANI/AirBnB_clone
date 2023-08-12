@@ -21,4 +21,3 @@ class TestBaseModel(unittest.TestCase):
         """
         obj = BaseModel()
         self.assertTrue(isinstance(obj, BaseModel))
-        
