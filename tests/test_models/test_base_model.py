@@ -20,5 +20,4 @@ class TestBaseModel(unittest.TestCase):
         tests if an instance is created
         """
         obj = BaseModel()
-        self.assertTrue(isinstance(obj, BaseModel))
-        
+        self.assertTrue(isinstance(obj, BaseModel)
