@@ -20,6 +20,10 @@ class HBNBCommand(cmd.Cmd):
         """EOF to exit the program."""
         print()
         return True
+        
+    def emptyline(self):
+        """ Empty line and do nothing."""
+        pass
 
 
 if __name__ == "__main__":
