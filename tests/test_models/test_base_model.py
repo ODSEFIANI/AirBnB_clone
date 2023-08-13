@@ -10,7 +10,18 @@ import sys
 
 class BaseModelTestCase(unittest.TestCase):
     """ classss for base testtt """
-    pass
+    def test_basemodel_init(self):
+        """ class for base test """
+        new = BaseModel()
+
+        self.assertTrue(hasattr(new, "__init__"))
+        self.assertTrue(hasattr(new, "__str__"))
+        self.assertTrue(hasattr(new, "save"))
+        self.assertTrue(hasattr(new, "to_dict"))
+
+        self.assertTrue(hasattr(new, "id"))
+        self.assertTrue(hasattr(new, "created_at"))
+        self.assertTrue(hasattr(new, "updated_at"))
 
 
 if __name__ == '__main__':
