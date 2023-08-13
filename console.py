@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** no instance found **")
                     
-     def do_create(self, arg):
+    def do_create(self, arg):
         """ fresh basemodel."""
         if not arg:
             print("** class name missing **")

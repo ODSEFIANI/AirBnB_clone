@@ -19,7 +19,7 @@ class TestFileStorage(unittest.TestCase):
         base_a.name = "base"
         storage.new(base_a)
         key = base_a.__class__.__name__ + "." + str(base_a.id)
-        self.assertIsNotNone(instances_dic[key]
+        self.assertIsNotNone(instances_dic[key])
 
     def test_attributes(self):
         self.assertTrue(hasattr(self.storage, '_FileStorage__file_path'))
