@@ -23,6 +23,10 @@ class BaseModelTestCase(unittest.TestCase):
         self.assertTrue(hasattr(new, "created_at"))
         self.assertTrue(hasattr(new, "updated_at"))
 
+        self.assertIsInstance(new.id, str)
+        self.assertIsInstance(new.created_at, datetime)
+        self.assertIsInstance(new.updated_at, datetime)
+
 
 if __name__ == '__main__':
     unittest.main()
