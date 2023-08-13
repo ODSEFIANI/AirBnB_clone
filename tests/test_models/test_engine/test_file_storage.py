@@ -22,8 +22,9 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(instances_dic[key])
 
     def test_attributes(self):
-        self.assertTrue(hasattr(self.storage, '_FileStorage__file_path'))
-        self.assertTrue(hasattr(self.storage, '_FileStorage__objects'))
+        storage = FileStorage()
+        self.assertTrue(hasattr(storage, '_FileStorage__file_path'))
+        self.assertTrue(hasattr(storage, '_FileStorage__objects'))
     
     def test_reload_nonexistent_file(self):
         
