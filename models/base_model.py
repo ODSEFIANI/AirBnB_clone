@@ -23,23 +23,20 @@ class BaseModel():
         """
         initializes an instance
         """
-        if len(kwargs) != 0:
-            t = "%Y-%m-%dT%H:%M:%S.%f"
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        if kwargs:
+            t = '%Y-%m-%dT%H:%M:%S.%f'
             for key, value in kwargs.items():
-                if key == "__class__":
-                    pass
-                elif key == "created_at":
+                if key == "created_at":
                     self.created_at = datetime.strptime(value, t)
                 elif key == "updated_at":
                     self.updated_at = datetime.strptime(value, t)
-                else:
+                elif key != "__class__":
                     setattr(self, key, value)
         else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-        models.storage.new(self)
-        models.storage.save()
+            models.storage.new(self)
 
     def __str__(self):
         """
