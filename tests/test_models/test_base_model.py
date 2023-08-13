@@ -1,32 +1,35 @@
 #!/usr/bin/python3
-""" unittt test for basessss """
-import json
+"""Defines a unittests for BaseModel class."""
 import unittest
 from models.base_model import BaseModel
-from datetime import datetime
-import models
-import sys
+import os
 
 
-class BaseModelTestCase(unittest.TestCase):
-    """ classss for base testtt """
-    def test_basemodel_init(self):
-        """ class for base test """
-        new = BaseModel()
+class TestBaseModel(unittest.TestCase):
 
-        self.assertTrue(hasattr(new, "__init__"))
-        self.assertTrue(hasattr(new, "__str__"))
-        self.assertTrue(hasattr(new, "save"))
-        self.assertTrue(hasattr(new, "to_dict"))
+    def test_save(self):
+        first_updated_at = self.cls_base.updated_at
+        self.cls_base.save()
+        self.assertNotEqual(first_updated_at, self.cls_base.updated_at)
 
-        self.assertTrue(hasattr(new, "id"))
-        self.assertTrue(hasattr(new, "created_at"))
-        self.assertTrue(hasattr(new, "updated_at"))
+    def test_str(self):
+        clsname = self.cls_base.__class__.__name__
+        clsdict = self.cls_base.__dict__
+        ex_str = "[{}] ({}) {}".format(clsname, self.cls_base.id, clsdict)
+        self.assertEqual(str(self.cls_base), ex_str)
 
-        self.assertIsInstance(new.id, str)
-        self.assertIsInstance(new.created_at, datetime)
-        self.assertIsInstance(new.updated_at, datetime)
+    def test_to_dict(self):
+        cls_base_dict = self.cls_base.to_dict()
+        self.assertIsInstance(cls_base_dict, dict)
+        self.assertEqual(cls_base_dict['__class__'], 'BaseModel')
+        self.assertEqual(str(self.cls_base.id), cls_base_dict['id'])
+        
+    def test_init(self):
+        self.assertIsInstance(self.cls_base, BaseModel)
+        self.assertTrue(hasattr(self.cls_base, 'id'))
+        self.assertTrue(hasattr(self.cls_base, 'created_at'))
+        self.assertTrue(hasattr(self.cls_base, 'updated_at'))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
