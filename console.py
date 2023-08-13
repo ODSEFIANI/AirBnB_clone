@@ -1,15 +1,25 @@
 #!/usr/bin/python3
 """
-Entry to command interpreter
+py shell
 """
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    Entry to command interpreter
-    """
-    pass
+    """ Cmd class."""
+
+
+    prompt = "(hbnb) "
+    cls = {"BaseModel", "User", "Place", "City", "Amenity", "Review", "State"}
+
+    def do_quit(self, arg):
+        """Command quit to exit the program."""
+        return True
+
+    def do_EOF(self, arg):
+        """EOF to exit the program."""
+        print()
+        return True
 
 
 if __name__ == "__main__":
