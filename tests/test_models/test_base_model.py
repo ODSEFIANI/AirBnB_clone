@@ -12,5 +12,6 @@ class BaseModelTestCase(unittest.TestCase):
     """ classss for base testtt """
     pass
 
+
 if __name__ == '__main__':
     unittest.main()
