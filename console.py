@@ -1,10 +1,11 @@
-#!/usr/bin/python3
+
 """
 py shell
 """
 import cmd
 import re
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -97,8 +98,6 @@ class HBNBCommand(cmd.Cmd):
                 if args[0] in key:
                     res.append(obj)
             print(res)
-            for obj in res:
-                print(obj)
     
     def do_update(self, line):
         args = tuple(line.split())
