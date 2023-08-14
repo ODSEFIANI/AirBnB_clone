@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 """
 py shell
 """
@@ -59,7 +59,46 @@ class HBNBCommand(cmd.Cmd):
                 new_inst.save()
                 print(new_inst.id)
             except NameError:
-                print("** class doesn't exist **")                   
+                print("** class doesn't exist **")
+    
+    def do_destroy(self, arg):
+        """ deletes an instance """
+        if len(arg) == 0:
+            print("** class name missing **")
+            return
+        args = tuple(arg.split())
+        if args[0] not in HBNBCommand.cls:
+            print("** class doesn't exist **")
+            return
+        try:
+            if args[1]:
+                name = "{}.{}".format(args[0], args[1])
+                if name not in storage.all().keys():
+                    print("** no instance found **")
+                else:
+                    del storage.all()[name]
+                    storage.save()
+        except Exception:
+            print("** instance id missing **")
+    
+    def do_all(self, arg):
+        res = []
+        if len(arg) == 0:
+            for obj in storage.all().values():
+                res.append(obj)
+            print(res)
+            return
+        if arg not in HBNBCommand.cls:
+            print("** class doesn't exist **")
+            return
+        args = tuple(arg.split())
+        if args[0] in HBNBCommand.cls:
+            for key, obj in storage.all().items():
+                if args[0] in key:
+                    res.append(obj)
+            print(res)
+            for obj in res:
+                print(obj)
 
 
 if __name__ == "__main__":

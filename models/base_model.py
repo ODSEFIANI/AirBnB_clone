@@ -38,9 +38,9 @@ class BaseModel():
         else:
             models.storage.new(self)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
-        prints info about an instance
+        returns info about an instance
         """
         a = self.__class__.__name__
         b = self.id
