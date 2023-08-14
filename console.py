@@ -99,6 +99,27 @@ class HBNBCommand(cmd.Cmd):
             print(res)
             for obj in res:
                 print(obj)
+    
+    def do_update(self, line):
+        args = tuple(line.split())
+        if len(args) >= 4:
+            name = "{}.{}".format(args[0], args[1])
+            cast = type(eval(args[3]))
+            a = args[3].strip("'").strip('"')
+            setattr(storage.all()[name], args[2], cast(a))
+            storage.all()[name].save()
+        elif len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in HBNBCommand.cls:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif ("{}.{}".format(args[0], args[1])) not in storage.all().keys():
+            print("** no instance found **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        else:
+            print("** value missing **")
 
 
 if __name__ == "__main__":
