@@ -7,6 +7,12 @@ import os
 
 class TestBaseModel(unittest.TestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        cls.cls_base = BaseModel()
+        cls.cls_base.name = "base-cls"
+        cls.cls_base.number = 2
+
     def test_save(self):
         first_updated_at = self.cls_base.updated_at
         self.cls_base.save()

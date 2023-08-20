@@ -38,9 +38,9 @@ class BaseModel():
         else:
             models.storage.new(self)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
-        prints info about an instance
+        returns info about an instance
         """
         a = self.__class__.__name__
         b = self.id
@@ -60,8 +60,11 @@ class BaseModel():
         returns a dictionary
         containing all keys/values of __dict__ of the required instance
         """
-        d = self.__dict__
-        d["__class__"] = self.__class__.__name__
-        d["created_at"] = self.created_at.isoformat()
-        d["updated_at"] = self.updated_at.isoformat()
-        return d
+        dic = {}
+        dic["__class__"] = self.__class__.__name__
+        for key, value in self.__dict__.items():
+            if isinstance(value, (datetime, )):
+                dic[key] = value.isoformat()
+            else:
+                dic[key] = value
+        return dic

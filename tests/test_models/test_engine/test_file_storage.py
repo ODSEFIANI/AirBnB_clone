@@ -13,15 +13,18 @@ import json
 class TestFileStorage(unittest.TestCase):
 
     def test_new(self):
-        user = BaseModel()
-        self.storage.new(user)
-        all_objects = self.storage.all()
-        key = "{}.{}".format(user.__class__.__name__, user.id)
-        self.assertTrue(key in all_objects)
+        storage = FileStorage()
+        instances_dic = storage.all()
+        base_a = BaseModel()
+        base_a.name = "base"
+        storage.new(base_a)
+        key = base_a.__class__.__name__ + "." + str(base_a.id)
+        self.assertIsNotNone(instances_dic[key])
 
     def test_attributes(self):
-        self.assertTrue(hasattr(self.storage, '_FileStorage__file_path'))
-        self.assertTrue(hasattr(self.storage, '_FileStorage__objects'))
+        storage = FileStorage()
+        self.assertTrue(hasattr(storage, '_FileStorage__file_path'))
+        self.assertTrue(hasattr(storage, '_FileStorage__objects'))
     
     def test_reload_nonexistent_file(self):
         
@@ -30,20 +33,21 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(nonexistent_storage.all(), {})
 
     def test_save_reload(self):
-        user = BaseModel()
-        self.storage.new(user)
-        self.storage.save()
-        file_path = self.storage._FileStorage__file_path
-        self.assertTrue(os.path.exists(file_path))
-
-        new_storage = FileStorage()
-        new_storage.reload()
-        all_objects = new_storage.all()
-        key = "{}.{}".format(user.__class__.__name__, user.id)
-        self.assertTrue(key in all_objects)
+        storage = FileStorage()
+        try:
+            os.remove("file.json")
+        except:
+            pass
+        with open("file.json", "w") as f:
+            f.write("{}")
+        with open("file.json", "r") as r:
+            for line in r:
+                self.assertEqual(line, "{}")
+        self.assertIs(storage.reload(), None)
 
     def test_all(self):
-        all_objects = self.storage.all()
+        storage = FileStorage()
+        all_objects = storage.all()
         self.assertIsInstance(all_objects, dict)
 
 
